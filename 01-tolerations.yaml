@@ -6,11 +6,11 @@ metadata:
     app: nginx
     tier: web
 spec:
+  nodeselector:
+	  hardware: gpu
   containers: #docker run -d --name-nginx nginx
   - name: nginx
     image: nginx
-  nodeSelector:
-	  hardware: gpu
   tolerations:
   - key: "hardware"
     operator: "Equal"
