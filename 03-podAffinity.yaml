@@ -3,36 +3,29 @@ kind: Pod
 metadata:
   name: nginx
   labels:
-    aff: podaf
+    purpose: podaf
 spec:
-  nodeSelector:
-    hardware: gpu
   containers: #docker run -d --name-nginx nginx
   - name: nginx
-    image: nginx
+    image: nginx:stable-perl
 ---    
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
   labels:
-    aff: podaf
+    purpose: pod2af
 spec:
   affinity:
     podAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
-          - key: aff
+          - key: purpose
             operator: In
             values: #label value of pod1
             - podaf
         topologyKey: topology.kubernetes.io/zone
   containers: #docker run -d --name-nginx nginx
   - name: nginx
-    image: nginx
-  tolerations:
-  - key: "hardware"
-    operator: "Equal"
-    value: "gpu"
-    effect: "NoSchedule"
+    image: nginx:stable-perl
