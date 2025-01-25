@@ -1,31 +1,31 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx
+  name: Pod1
   labels:
     purpose: podaf
 spec:
   containers: # docker run -d --name-nginx nginx
   - name: nginx
     image: nginx:stable-perl
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx2
-  labels:
-    purpose: pod2af
-spec:
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: purpose
-            operator: In
-            values:
-            - podaf # Match the label value of the first pod
-        topologyKey: topology.kubernetes.io/zone
-  containers: # docker run -d --name-nginx nginx
-  - name: nginx
-    image: nginx:stable-perl
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: Pod2
+#   labels:
+#     purpose: pod2af
+# spec:
+#   affinity:
+#     podAffinity:
+#       requiredDuringSchedulingIgnoredDuringExecution:
+#       - labelSelector:
+#           matchExpressions:
+#           - key: purpose
+#             operator: In
+#             values:
+#             - podaf # Match the label value of the first pod
+#         topologyKey: kubernetes.io/hostname
+#   containers: # docker run -d --name-nginx nginx
+#   - name: nginx
+#     image: nginx:stable-perl
