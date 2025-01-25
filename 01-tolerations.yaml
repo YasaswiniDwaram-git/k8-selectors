@@ -9,5 +9,10 @@ spec:
   containers: #docker run -d --name-nginx nginx
   - name: nginx
     image: nginx
+  tolerations:
+	- key: "hardware"
+		operator: "Equal"
+		value: "gpu"
+		effect: "Noschedule"
 
 
