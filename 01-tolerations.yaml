@@ -12,7 +12,7 @@ spec:
   - name: nginx
     image: nginx
   tolerations:
-  - key: "hardware"
+  - key: "harware"
     operator: "Equal"
     value: "gpu"
     effect: "NoSchedule"
