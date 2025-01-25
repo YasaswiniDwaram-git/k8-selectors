@@ -8,24 +8,24 @@ spec:
   containers: # docker run -d --name-nginx nginx
   - name: nginx
     image: nginx:stable-perl
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: nginx
-#   labels:
-#     purpose: pod2af
-# spec:
-#   affinity:
-#     podAffinity:
-#       requiredDuringSchedulingIgnoredDuringExecution:
-#       - labelSelector:
-#           matchExpressions:
-#           - key: purpose
-#             operator: In
-#             values:
-#             - podaf # Match the label value of the first pod
-#         topologyKey: kubernetes.io/hostname
-#   containers: # docker run -d --name-nginx nginx
-#   - name: nginx
-#     image: nginx:stable-perl
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+  labels:
+    purpose: pod2af
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: purpose
+            operator: In
+            values:
+            - podaf # Match the label value of the first pod
+        topologyKey: kubernetes.io/hostname
+  containers: # docker run -d --name-nginx nginx
+  - name: nginx
+    image: nginx:stable-perl
