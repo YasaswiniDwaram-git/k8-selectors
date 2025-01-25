@@ -5,10 +5,10 @@ metadata:
   labels:
     purpose: podaf
 spec:
-  containers: #docker run -d --name-nginx nginx
+  containers: # docker run -d --name-nginx nginx
   - name: nginx
     image: nginx:stable-perl
----    
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -23,9 +23,9 @@ spec:
           matchExpressions:
           - key: purpose
             operator: In
-            values: #label value of pod1
-            - podaf
+            values:
+            - podaf # Match the label value of the first pod
         topologyKey: topology.kubernetes.io/zone
-  containers: #docker run -d --name-nginx nginx
+  containers: # docker run -d --name-nginx nginx
   - name: nginx
     image: nginx:stable-perl
