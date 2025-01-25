@@ -15,11 +15,11 @@ spec:
     value: "gpu"
     effect: "NoSchedule"
   affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 1
-        preference:
-          matchExpressions:
+    nodeAntiAffinity:
+	#hard rule , will surely schduele only in 
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
           - key: hardware
             operator: In
             values:
