@@ -7,7 +7,7 @@ metadata:
     tier: web
 spec:
   nodeselector:
-	  hardware: gpu
+    hardware: gpu
   containers: #docker run -d --name-nginx nginx
   - name: nginx
     image: nginx
